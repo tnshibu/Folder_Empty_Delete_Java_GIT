@@ -10,6 +10,7 @@ public class Folder_Empty_Delete {
   private static List<String> includeList = new ArrayList<String>();
   private static List<String> exclusionList = new ArrayList<String>();
   private static SortedMap<Long,List<String>> fileMap = Collections.synchronizedSortedMap(new TreeMap<Long,List<String>>());
+  private static FileOutputStream fos =  null;
   /******************************************************************************************/
   public static void main(String[] args) throws Exception {
 	Map hm = PropertiesLoader.loadToHashMap("input.properties");
@@ -20,7 +21,7 @@ public class Folder_Empty_Delete {
 	fileList.addAll(getFolderList(includeList.get(0)));
     System.out.println("REM ----- looping directories - start");
     System.out.println("REM ----- fileList.size()="+fileList.size());
-	
+	fos = new FileOutputStream(new File("empty_folders.txt"));
     for(int i=0;i<fileList.size();i++) {
 	  if(i%1000 == 0) {
 		//System.out.println(i+",");
@@ -47,9 +48,11 @@ public class Folder_Empty_Delete {
 	  if(children != null && children.length == 0) {
 		String command = "RD \"" + file.getAbsolutePath() +"\"";
 		System.out.println(command);
+        fos.write((file.getAbsolutePath()+"\r\n").getBytes());
 	  }
       //System.out.print(","+i);
     }
+    fos.close();
     System.out.println("REM ----- program end");
 	
   }
