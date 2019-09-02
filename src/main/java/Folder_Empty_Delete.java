@@ -18,10 +18,19 @@ public class Folder_Empty_Delete {
 	exclusionList = (List<String>)hm.get("EXCLUDE_PATH");
     ArrayList<String> fileList = new ArrayList<String>();
     System.out.println("REM ----- includeList.get(0)="+includeList.get(0));
-	fileList.addAll(getFolderList(includeList.get(0)));
+
+    //if((args != null) && (args.length > 0)) {
+    //    folderSizeMap = loadFileLists(args);
+    //} else {
+    //    //folderSizeMap = loadFileLists("."); // if no arguments are given, process current directory
+        fileList.addAll(getFolderList("."));
+    //}
+
+
+	//fileList.addAll(getFolderList(includeList.get(0)));
     System.out.println("REM ----- looping directories - start");
     System.out.println("REM ----- fileList.size()="+fileList.size());
-	fos = new FileOutputStream(new File("empty_folders.txt"));
+	fos = new FileOutputStream(new File("empty_folders.bat"));
     for(int i=0;i<fileList.size();i++) {
 	  if(i%1000 == 0) {
 		//System.out.println(i+",");
@@ -48,7 +57,8 @@ public class Folder_Empty_Delete {
 	  if(children != null && children.length == 0) {
 		String command = "RD \"" + file.getAbsolutePath() +"\"";
 		System.out.println(command);
-        fos.write((file.getAbsolutePath()+"\r\n").getBytes());
+        //fos.write((file.getAbsolutePath()+"\r\n").getBytes());
+        fos.write((command+"\r\n").getBytes());
 	  }
       //System.out.print(","+i);
     }
