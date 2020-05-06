@@ -1,6 +1,4 @@
 call SET_JAVA_HOME.bat
-rem del Folder_Empty_Delete.class
-rem %JAVA_HOME%\bin\javac Folder_Empty_Delete.java
-%JAVA_HOME%\bin\java -cp . -Xmx512m Folder_Empty_Delete > empty.log.bat
+%JAVA_HOME%\bin\java -cp target\Folder_Empty_Delete-1.0.jar -Xmx512m Folder_Empty_Delete %1 > empty.log.bat
 
 rem PAUSE

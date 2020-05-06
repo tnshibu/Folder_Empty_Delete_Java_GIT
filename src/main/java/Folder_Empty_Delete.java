@@ -19,12 +19,13 @@ public class Folder_Empty_Delete {
     ArrayList<String> fileList = new ArrayList<String>();
     System.out.println("REM ----- includeList.get(0)="+includeList.get(0));
 
-    //if((args != null) && (args.length > 0)) {
-    //    folderSizeMap = loadFileLists(args);
-    //} else {
-    //    //folderSizeMap = loadFileLists("."); // if no arguments are given, process current directory
-        fileList.addAll(getFolderList("."));
-    //}
+    if((args != null) && (args.length > 0)) {
+        //folderSizeMap = loadFileLists(args);
+        fileList.addAll(getFolderList(args[0]));
+    } else {
+        //folderSizeMap = loadFileLists("."); // if no arguments are given, process current directory
+      fileList.addAll(getFolderList("."));
+    }
 
 
 	//fileList.addAll(getFolderList(includeList.get(0)));
